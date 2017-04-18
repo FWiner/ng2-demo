@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only>
+        <ion-icon name="list"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>我的费用</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content margin-top padding-horizontal>
+  <ion-fab bottom right class="fab-expense-add">
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab><ion-icon name="add"></ion-icon></button>
+      <button ion-fab><ion-icon name="qr-scanner"></ion-icon></button>
+      <button ion-fab><ion-icon name="download"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-list class="expense-list">
+    <ion-item-sliding *ngFor="let item of expenses" #expenseItem>
+      <ion-item (click)="alert(item)">
+        <ion-avatar item-left>
+          <ion-icon name="beer" color="primary"></ion-icon>
+        </ion-avatar>
+        <h2>{{item.name}}</h2>
+        <p>{{item.consumeDate}}</p>
+        <ion-note item-right color="dark">{{item.totalAmount}}</ion-note>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="danger" (click)="del(item)" icon-left>
+          删除
+        </button>
+        <button ion-button color="primary" (click)="copy(item, expenseItem)" icon-left>
+          复制费用
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
